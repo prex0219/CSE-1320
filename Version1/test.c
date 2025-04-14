@@ -9,16 +9,18 @@ void donateFood()
     int user_choice_donate;
     int user_choice_pickup;
     char user_choice_request;
-    char food_name[50];
+    char food_name_donate[50];
     char name[50];
-    int quantity;
-    printf("1. Please select a category.\n");
-    printf("2. Grains & Staples\n");
-    printf("3. Dairy Products\n");
-    printf("4. Fruits & Vegetables\n");
-    printf("5. Proteins\n");
-    printf("6. Snacks & Beverages\n");
-    printf("7. Baking & Cooking Essentials\n");
+    int quantity_donate;
+    printf("Please select a category.\n");
+    printf("1. Grains & Staples\n");
+    printf("2. Dairy Products\n");
+    printf("3. Fruits & Vegetables\n");
+    printf("4. Proteins\n");
+    printf("5. Snacks & Beverages\n");
+    printf("6. Baking & Cooking Essentials\n");
+    printf("7. Exit\n");
+    printf("Enter your choice: ");
     scanf("%d", &user_choice_donate);
 
     printf("Would you like to check requested items before donating? (Y/N):\n");
@@ -30,11 +32,12 @@ void donateFood()
     }
     else
     {
-        printf("Enter food name: \n");
-        scanf("%s", food_name);
+
+        printf("Enter food name: ");
+        scanf("%s", food_name_donate);
         
-        printf("Enter quantity: \n");
-        scanf("%d", quantity);
+        printf("Enter quantity: ");
+        scanf("%d", quantity_donate);
 
         printf("Please choose a pickup location.");
         printf("1. Irving\n");
@@ -42,16 +45,96 @@ void donateFood()
         printf("3. Euless\n");
         printf("4. Arlington\n");
         printf("5. Dallas\n");
-        printf("Enter your choice: \n");
+        printf("Enter your choice: ");
         scanf("%d", user_choice_pickup);
 
-        printf("Enter your name: \n");
+        printf("Enter your name: ");
         fgets(name, sizeof(name), stdin);
 
         addFoodDonationToList();
 
         printf("Thank you, %s ! Your donation has been recorded.", name);
     }
+}
+
+void viewAvailableFood()
+{
+    int user_choice_view;
+    printf("Please select a category.\n");
+    printf("1. Grains & Staples\n");
+    printf("2. Dairy Products\n");
+    printf("3. Fruits & Vegetables\n");
+    printf("4. Proteins\n");
+    printf("5. Snacks & Beverages\n");
+    printf("6. Baking & Cooking Essentials\n");
+    printf("7. Exit\n");
+    printf("Enter your choice: ");
+    scanf("%d", &user_choice_view);
+
+    /*if (user_choice_view == 1)
+    {
+        grains();
+    }
+    else if (user_choice_view == 2)
+    {
+        dairy();
+    }
+    else if (user_choice_view == 3)
+    {
+        fruitsvegg();
+    }
+    else if (user_choice_view == 4)
+    {
+        proteins();
+    }
+    else if (user_choice_view == 5)
+    {
+        snacks();
+    }
+    else if (user_choice_view == 6)
+    {
+        essentials();
+    }
+    else if (user_choice_view == 7)
+    {
+        exitSystem();
+        break;
+    }
+    else 
+    {
+        printf("Invalid choice. Please choose from the givenoptions./n");
+        scanf("%d", user_choice_view);
+    }*/
+} 
+
+struct FoodRequest
+{
+    char foodName[50];
+    int quantity;
+
+};
+
+void requestFood() 
+{
+    struct FoodRequest newRequest; 
+
+    printf("Enter the food name: ");
+    fgets(newRequest.foodName, sizeof(newRequest.foodName), stdin);
+
+    printf("Enter the quantity: ");
+    scanf("%d", &newRequest.quantity);
+
+    addFoodRequestToList(newRequest);
+
+    printf("\nThank you for your food appeal. We will make sure to notify our donors about your request.\n");
+}
+
+void contactUs() 
+{
+    printf("For any questions or suggestions, reach out to us!\n");
+    printf("Email: contact@hungerreliefhub.com\n");
+    printf("Phone: 123-456-7890\n");
+    printf("Developed by: Your Team Name\n");
 }
 
 int main()
